@@ -31,18 +31,12 @@ public class Main {
 
      Set<String> topWords = new HashSet<String>(list);
 
-        for (String word: topWords ) {
+     topWords
+             .stream()
+             .limit(25)
+             .forEach(e -> System.out.println(e + ": " + Collections.frequency(list, e)));
 
-            if ()
-
-            System.out.println(word + ": " + Collections.frequency(list, word));
-
-        }
-
-
-
-
-
+        
 
 }
 }
