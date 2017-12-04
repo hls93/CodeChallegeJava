@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -33,10 +34,13 @@ public class Main {
 
      topWords
              .stream()
-             .limit(25)
+             .filter(e -> e.length() > 6)
+             .collect(Collectors.toList())
+
+             //.limit(25)
              .forEach(e -> System.out.println(e + ": " + Collections.frequency(list, e)));
 
-        
+
 
 }
 }
