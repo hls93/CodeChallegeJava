@@ -40,11 +40,12 @@ public class Main {
 
          i = list.lastIndexOf(s) +1;
      }
-        System.out.println(map);
+        //System.out.println(map);
 
 
         map.entrySet().stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .limit(25)
                 .forEach(System.out::println);
 
 
