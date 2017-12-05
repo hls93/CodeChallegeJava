@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Comparator;
 
 public class Main {
 
@@ -24,21 +25,28 @@ public class Main {
      //extracting the text from the body of the webpage
      String text = doc.body().text();
 
-     //printing to make sure my extracting worked
-     //System.out.println(text);
-
      //creating a new list to show the words on the webpage and their frequency
      List<String> list = Arrays.asList(text.split(" "));
+     Collections.sort(list);
 
-     Set<String> topWords = new HashSet<String>(list);
+     //creating a hashmap to store the word and its frequency
+     HashMap<String, Integer> map = new HashMap<String, Integer>();
 
-     topWords
-             .stream()
-             .filter(e -> e.length() > 6)
-             .collect(Collectors.toList())
+     for (int i = 0; i < list.size();) {
+         String s = list.get(i);
+         int count = list.lastIndexOf(s) - list.indexOf(s) +1;
 
-             //.limit(25)
-             .forEach(e -> System.out.println(e + ": " + Collections.frequency(list, e)));
+         map.put(s, count);
+
+         i = list.lastIndexOf(s) +1;
+     }
+        System.out.println(map);
+
+
+        map.entrySet().stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .forEach(System.out::println);
+
 
 
 
